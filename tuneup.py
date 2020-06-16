@@ -71,7 +71,7 @@ def main():
     print('\n'.join(result))
 
 
-# timeit_helper(main)
+timeit_helper(main)
 
 
 if __name__ == '__main__':
