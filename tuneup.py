@@ -13,6 +13,7 @@ import io
 from pstats import SortKey
 import timeit
 from functools import partial
+from collections import Counter
 
 
 def decorator_profile(orig_function):
@@ -46,12 +47,8 @@ def read_movies(src):
 def find_duplicate_movies(src):
     """Returns a list of duplicate movies from a src list."""
     movies = read_movies(src)
-    duplicates = []
-    while movies:
-        movie = movies.pop()
-        if movie in movies:
-            duplicates.append(movie)
-    return duplicates
+    duplicates = Counter(movies)
+    return [k for k, v in duplicates.items() if v > 1]
 
 
 def timeit_helper(func):
